@@ -29,7 +29,7 @@ ips = []
   end
 end
 
-puts 'iterations: ' + ips.length
+puts 'iterations: 1,000,000'
 
 Benchmark.bmbm do |x|
   x.report('IPAddr#to_i') { ips.each { |ip| IPAddr.new(ip).to_i } }

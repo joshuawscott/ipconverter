@@ -1,12 +1,15 @@
 #include <ruby.h>
 #include "ipconverter.h"
 
+#define MAX_IP_INT 4294967295
+
 // Module name
 VALUE IpConverter = Qnil;
 
 void Init_ipconverter() {
   IpConverter = rb_define_module("IpConverter");
   rb_define_method(IpConverter, "str_to_int", method_str_to_int, 1);
+  rb_define_method(IpConverter, "int_to_str", method_int_to_str, 1);
 }
 
 /*
@@ -68,3 +71,40 @@ ip_string_to_long(char c_string[], uint32_t *result) {
   return 1;
 }
 
+/*
+ * call-seq:
+ *    IpConverter.int_to_str(ip_addr_integer) -> String
+ *
+ * Converts the passed integer into an IPv4 address string.
+ * 
+ * Raises ArugmentError if number is negative, or greater than the maximum
+ * possible value for an IPv4 address (4294967295)
+ *
+ * Example:
+ *    IpConverter.int_to_str(3232236033)
+ *      => "192.168.2.1"
+ * 
+ */
+VALUE
+method_int_to_str(VALUE _module_, VALUE ip_fixnum) {
+  char c_string[16];
+  int64_t ip = NUM2LL(ip_fixnum);
+  if (ip > MAX_IP_INT || ip < 0) {
+     rb_raise(rb_eArgError, "IP address integer out of range");
+  }
+  ip_long_to_string((uint32_t)ip, c_string);
+  return rb_str_new2(c_string);
+}
+
+// This one is a void because the bounds checking is done with the uint32_t
+// type already.
+static void
+ip_long_to_string(uint32_t ip, char c_string[]) {
+  uint8_t bytes[4];
+  bytes[0] = ip & 0xFF;
+  bytes[1] = (ip >> 8) & 0xFF;
+  bytes[2] = (ip >> 16) & 0xFF;
+  bytes[3] = (ip >> 24) & 0xFF; 
+
+  sprintf(c_string, "%d.%d.%d.%d", bytes[3], bytes[2], bytes[1], bytes[0]);
+}

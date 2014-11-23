@@ -8,4 +8,5 @@ require 'ipconverter/ipconverter'
 #
 module IpConverter
   module_function :str_to_int
+  module_function :int_to_str
 end
