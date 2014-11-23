@@ -10,8 +10,8 @@ def ip_to_i2(ip)
   octets = ip.split('.').map(&:to_i)
   octets[3] +
     octets[2] * 256 +
-    octets[1] * 256*256 +
-    octets[0] * 256*256*256 
+    octets[1] * 256 * 256 +
+    octets[0] * 256 * 256 * 256
 end
 
 def ipaddr_to_i(ip)
@@ -29,13 +29,12 @@ ips = []
   end
 end
 
-puts "iterations: " + ips.length
+puts 'iterations: ' + ips.length
 
 Benchmark.bmbm do |x|
   x.report('IPAddr#to_i') { ips.each { |ip| IPAddr.new(ip).to_i } }
   x.report('pack/unpack') { ips.each { |ip| ip_to_i(ip) } }
   x.report('split/multiply') { ips.each { |ip| ip_to_i2(ip) } }
-  x.report('C split/multiply') { ips.each {|ip| IpConverter.str_to_int(ip) } }
-  x.report('noop') { ips.each {|ip| ip } }
+  x.report('C split/multiply') { ips.each { |ip| IpConverter.str_to_int(ip) } }
+  x.report('noop') { ips.each { |ip| ip } }
 end
-
