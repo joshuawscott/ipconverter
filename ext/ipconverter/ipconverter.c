@@ -9,8 +9,20 @@ void Init_ipconverter() {
   rb_define_method(IpConverter, "str_to_int", method_str_to_int, 1);
 }
 
-// Converts a passed ruby string into an integer
-// returns integer or nil (if ip is invalid)
+/*
+ * call-seq:
+ *    IpConverter.str_to_int(ip_addr_string) -> Fixnum
+ *
+ * Converts the passed IP address String into a Fixnum.
+ *
+ * Raises ArgumentError if ip address is not valid.  Leading and trailing
+ * whitespace is ignored.
+ *
+ * Example:
+ *    IpConverter.str_to_int("192.168.2.1")
+ *      => 3232236033
+ *
+ */
 VALUE method_str_to_int(VALUE _module_, VALUE ip_string) {
 
   // C string version of the ip_string
