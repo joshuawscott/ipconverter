@@ -4,6 +4,8 @@ Library to deal with IP Address conversions/manipulation, such as converting
 a string representation like "192.168.2.1" to its integer representation
 (3232236033)
 
+Tested with Ruby >= 1.9.3.
+
 ## Installation
 
 Add this line to your application's Gemfile:
