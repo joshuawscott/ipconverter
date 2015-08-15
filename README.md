@@ -33,6 +33,15 @@ IpConverter.str_to_int "192.168.2"
  => raises ArgumentError
 ```
 
+## Running the tests
+
+Clone the repo
+```
+bundle install
+bundle exec rake compile
+bundle exec rake test
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/joshuawscott/ipconverter/fork )
