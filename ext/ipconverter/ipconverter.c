@@ -48,21 +48,21 @@ VALUE method_str_to_int(VALUE _module_, VALUE ip_string) {
 // value and stores that in result.
 static int
 ip_string_to_long(char c_string[], uint32_t *result) {
-  int32_t i, found_octets;
+  uint32_t i, found_octets;
   char junk;
-  int32_t octets[4];
+  uint32_t octets[4];
 
   found_octets = sscanf((char*)c_string, "%d.%d.%d.%d%c", (int*)&octets[3], (int*)&octets[2], (int*)&octets[1], (int*)&octets[0], &junk);
 
   // If we didn't find exactly 4 octets, bail out, unless the extra is whitespace
-  if (found_octets != 4 
+  if (found_octets != 4
       && !(found_octets == 5 && junk == ' ')) {
     return 0;
   }
 
   // If any of the octets are not in-range, bail out
   for (i = 0; i < 4; i++) {
-    if (octets[i] > 255 || octets[i] < 0) {
+    if (octets[i] > 255) {
       return 0;
     }
   }
@@ -76,14 +76,14 @@ ip_string_to_long(char c_string[], uint32_t *result) {
  *    IpConverter.int_to_str(ip_addr_integer) -> String
  *
  * Converts the passed integer into an IPv4 address string.
- * 
+ *
  * Raises ArugmentError if number is negative, or greater than the maximum
  * possible value for an IPv4 address (4294967295)
  *
  * Example:
  *    IpConverter.int_to_str(3232236033)
  *      => "192.168.2.1"
- * 
+ *
  */
 VALUE
 method_int_to_str(VALUE _module_, VALUE ip_fixnum) {
@@ -104,7 +104,7 @@ ip_long_to_string(uint32_t ip, char c_string[]) {
   bytes[0] = ip & 0xFF;
   bytes[1] = (ip >> 8) & 0xFF;
   bytes[2] = (ip >> 16) & 0xFF;
-  bytes[3] = (ip >> 24) & 0xFF; 
+  bytes[3] = (ip >> 24) & 0xFF;
 
   sprintf(c_string, "%d.%d.%d.%d", bytes[3], bytes[2], bytes[1], bytes[0]);
 }
