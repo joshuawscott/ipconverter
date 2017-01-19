@@ -2,9 +2,8 @@ require 'ipconverter'
 require 'minitest/autorun'
 
 class TestIpConverter < MiniTest::Test
-  MAX_IP_INT = 4294967295
-  def setup
-  end
+  MAX_IP_INT = 4_294_967_295
+  def setup; end
 
   def test_smallest_ip
     int = IpConverter.str_to_int '0.0.0.0'
@@ -43,11 +42,11 @@ class TestIpConverter < MiniTest::Test
   end
 
   def test_int_to_str_max
-    assert_equal "255.255.255.255", IpConverter.int_to_str(MAX_IP_INT) 
+    assert_equal "255.255.255.255", IpConverter.int_to_str(MAX_IP_INT)
   end
 
   def test_int_to_str_negative
-    assert_raises(ArgumentError) { IpConverter.int_to_str -1 }
+    assert_raises(ArgumentError) { IpConverter.int_to_str(-1) }
   end
 
   def test_int_to_str_too_big

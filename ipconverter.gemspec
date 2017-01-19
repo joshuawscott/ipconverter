@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Joshua Scott']
   spec.email         = ['joshua.scott@gmail.com']
   spec.summary       = 'Utilities for working with IP addresses'
-  spec.description   = %q(Fast C extension for converting IP addresses from
-string to integer)
+  spec.description   = 'Fast C extension for converting IP addresses from
+string to integer'
   spec.homepage      = 'http://github.com/joshuawscott/ipconverter'
   spec.license       = 'MIT'
 
@@ -26,4 +26,5 @@ string to integer)
   spec.add_development_dependency 'rake', '~> 10'
   spec.add_development_dependency 'minitest', '~> 5'
   spec.add_development_dependency 'rake-compiler', '~> 0.9'
+  spec.add_development_dependency 'rubocop', '~> 0.47'
 end

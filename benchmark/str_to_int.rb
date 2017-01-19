@@ -2,11 +2,12 @@ require 'benchmark'
 require 'ipaddr'
 require 'ipconverter'
 
-def ip_to_i(ip)
+def self.pack_unpack(ip)
   ip.split('.').collect(&:to_i).pack('C*').unpack('N').first
 end
 
-def ip_to_i2(ip)
+# rubocop:disable AbcSize
+def self.split_multiply(ip)
   octets = ip.split('.').map(&:to_i)
   octets[3] +
     octets[2] * 256 +
@@ -14,7 +15,7 @@ def ip_to_i2(ip)
     octets[0] * 256 * 256 * 256
 end
 
-def ipaddr_to_i(ip)
+def self.ipaddr_to_i(ip)
   IPAddr.new(ip).to_i
 end
 
@@ -33,8 +34,8 @@ puts 'iterations: 1,000,000'
 
 Benchmark.bmbm do |x|
   x.report('IPAddr#to_i') { ips.each { |ip| IPAddr.new(ip).to_i } }
-  x.report('pack/unpack') { ips.each { |ip| ip_to_i(ip) } }
-  x.report('split/multiply') { ips.each { |ip| ip_to_i2(ip) } }
-  x.report('C split/multiply') { ips.each { |ip| IpConverter.str_to_int(ip) } }
+  x.report('pack/unpack') { ips.each { |ip| pack_unpack(ip) } }
+  x.report('split/multiply') { ips.each { |ip| split_multiply(ip) } }
+  x.report('IpConverter') { ips.each { |ip| IpConverter.str_to_int(ip) } }
   x.report('noop') { ips.each { |ip| ip } }
 end

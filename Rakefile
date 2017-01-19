@@ -2,6 +2,8 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rake/extensiontask'
 
+ROOT = File.expand_path('..', __FILE__)
+
 Rake::TestTask.new do |t|
   t.libs << 'test'
   t.pattern = 'test/test_*.rb'
@@ -12,3 +14,9 @@ Rake::ExtensionTask.new 'ipconverter' do |ext|
 end
 
 task default: [:compile, :test]
+
+desc "Run benchmarks"
+task benchmark: [:compile] do
+  sh "ruby #{ROOT}/benchmark/str_to_int.rb"
+  sh "ruby #{ROOT}/benchmark/int_to_str.rb"
+end

@@ -14,9 +14,9 @@ void Init_ipconverter() {
 
 /*
  * call-seq:
- *    IpConverter.str_to_int(ip_addr_string) -> Fixnum
+ *    IpConverter.str_to_int(ip_addr_string) -> Integer
  *
- * Converts the passed IP address String into a Fixnum.
+ * Converts the passed IP address String into an Integer.
  *
  * Raises ArgumentError if ip address is not valid.  Leading and trailing
  * whitespace is ignored.
@@ -36,7 +36,7 @@ VALUE method_str_to_int(VALUE _module_, VALUE ip_string) {
   int success = ip_string_to_long(c_string, &result);
 
   if (success) {
-    // Convert the uint32_t back to a ruby Fixnum.
+    // Convert the uint32_t back to a ruby Integer.
     return UINT2NUM(result);
   } else {
     rb_raise(rb_eArgError, "Invalid IP Address String");
@@ -86,9 +86,9 @@ ip_string_to_long(char c_string[], uint32_t *result) {
  *
  */
 VALUE
-method_int_to_str(VALUE _module_, VALUE ip_fixnum) {
+method_int_to_str(VALUE _module_, VALUE ip_integer) {
   char c_string[16];
-  int64_t ip = NUM2LL(ip_fixnum);
+  int64_t ip = NUM2LL(ip_integer);
   if (ip > MAX_IP_INT || ip < 0) {
      rb_raise(rb_eArgError, "IP address integer out of range");
   }
