@@ -14,6 +14,7 @@ def self.split_multiply(ip)
     octets[1] * 256 * 256 +
     octets[0] * 256 * 256 * 256
 end
+# rubocop:enable AbcSize
 
 def self.ipaddr_to_i(ip)
   IPAddr.new(ip).to_i
