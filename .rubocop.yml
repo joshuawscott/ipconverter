@@ -1,0 +1,8 @@
+StringLiterals:
+  Enabled: false
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+LineLength:
+  Enabled: true
+  Max: 100
