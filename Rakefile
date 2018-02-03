@@ -13,7 +13,7 @@ Rake::ExtensionTask.new 'ipconverter' do |ext|
   ext.lib_dir = 'lib/ipconverter'
 end
 
-task default: [:compile, :test]
+task default: %i[compile test]
 
 desc "Run benchmarks"
 task benchmark: [:compile] do
