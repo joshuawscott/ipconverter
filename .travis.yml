@@ -6,7 +6,6 @@ rvm:
   - "2.3.6"
   - "2.4.3"
   - "2.5.0"
-before_script:
-  - bundle exec rake compile
 script:
-  - bundle exec rake test
+  - bundle exec rake
+  - bundle exec rubocop
