@@ -1,5 +1,7 @@
 # IpConverter
 
+[![Build Status](https://travis-ci.org/joshuawscott/ipconverter.svg?branch=master)](https://travis-ci.org/joshuawscott/ipconverter)
+
 Library to deal with IP Address conversions/manipulation, such as converting
 a string representation like "192.168.2.1" to its integer representation
 (3232236033)
