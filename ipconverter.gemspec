@@ -26,5 +26,5 @@ string to integer'
   spec.add_development_dependency 'minitest', '~> 5'
   spec.add_development_dependency 'rake', '~> 12.3'
   spec.add_development_dependency 'rake-compiler', '~> 1.0'
-  spec.add_development_dependency 'rubocop', '~> 0.52'
+  spec.add_development_dependency 'rubocop', '~> 0.50'
 end
