@@ -1,3 +1,8 @@
+AllCops:
+  TargetRubyVersion: "2.5"
+  Exclude:
+    - "benchmark/**/*"
+    - "tmp/**/*"
 StringLiterals:
   Enabled: false
   SupportedStyles:
@@ -6,3 +11,5 @@ StringLiterals:
 LineLength:
   Enabled: true
   Max: 100
+Style/AccessModifierDeclarations:
+  Enabled: false

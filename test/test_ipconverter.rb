@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ipconverter'
 require 'minitest/autorun'
 

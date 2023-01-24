@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rake/extensiontask'
 
-ROOT = File.expand_path('..', __FILE__)
+ROOT = File.expand_path(__dir__)
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
