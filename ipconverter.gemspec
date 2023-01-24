@@ -28,6 +28,6 @@ string to integer'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'minitest', '~> 5'
   spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'rake-compiler', '= 1.1.1'
+  spec.add_development_dependency 'rake-compiler', '~> 1.0'
   spec.add_development_dependency 'rubocop', '~> 0.50'
 end
