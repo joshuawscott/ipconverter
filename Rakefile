@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'rake/extensiontask'
 
-ROOT = File.expand_path('..', __FILE__)
+ROOT = File.expand_path(__dir__)
 
 Rake::TestTask.new do |t|
   t.libs << 'test'
@@ -10,7 +12,7 @@ Rake::TestTask.new do |t|
 end
 
 Rake::ExtensionTask.new 'ipconverter' do |ext|
-  ext.lib_dir = 'lib/ipconverter'
+  ext.lib_dir = File.join %w[lib ipconverter]
 end
 
 task default: %i[compile test]

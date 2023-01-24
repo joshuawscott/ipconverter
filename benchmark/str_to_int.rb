@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 require 'benchmark'
 require 'ipaddr'
 require 'ipconverter'
 
 def self.pack_unpack(ip)
-  ip.split('.').collect(&:to_i).pack('C*').unpack('N').first
+  ip.split('.').collect(&:to_i).pack('C*').unpack1('N')
 end
 
-# rubocop:disable AbcSize
 def self.split_multiply(ip)
   octets = ip.split('.').map(&:to_i)
   octets[3] +
@@ -14,7 +15,6 @@ def self.split_multiply(ip)
     octets[1] * 256 * 256 +
     octets[0] * 256 * 256 * 256
 end
-# rubocop:enable AbcSize
 
 def self.ipaddr_to_i(ip)
   IPAddr.new(ip).to_i
