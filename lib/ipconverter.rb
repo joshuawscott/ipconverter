@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'ipconverter/version'
-require 'ipconverter'
+require 'ipconverter/ipconverter'
 
 # Contains the methods for doing IP Address conversions
 #
